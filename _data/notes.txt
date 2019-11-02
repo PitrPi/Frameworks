@@ -1,0 +1,9 @@
+Installing of PyTorch
+Install CUDA + conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
+
+Keras pipeline
+Using TensorFlow backend.
+71.78%
+https://machinelearningmastery.com/regression-tutorial-keras-deep-learning-library-python/
+
+Tensorflow pipeline

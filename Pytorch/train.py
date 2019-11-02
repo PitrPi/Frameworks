@@ -13,7 +13,7 @@ class LinearRegression(torch.nn.Module):
 
 
 def train_linear(train_data):
-    input_dim = train_data.shape[1]-1  # takes variable 'x'
+    input_dim = train_data.dataset.shape[1]-1  # takes variable 'x'
     output_dim = 1  # takes variable 'y'
     learning_rate = 0.01
     epochs = 100
@@ -28,11 +28,11 @@ def train_linear(train_data):
     for epoch in range(epochs):
         # Converting inputs and labels to Variable
         if torch.cuda.is_available():
-            inputs = Variable(torch.from_numpy(train_data.iloc[:, :-1]).cuda())
-            labels = Variable(torch.from_numpy(train_data.iloc[:, -1]).cuda())
+            inputs = Variable(torch.from_numpy(train_data.dataset.iloc[:, :-1].values).cuda())
+            labels = Variable(torch.from_numpy(train_data.dataset.iloc[:, -1].values).cuda())
         else:
-            inputs = Variable(torch.from_numpy(train_data.iloc[:, :-1]))
-            labels = Variable(torch.from_numpy(train_data.iloc[:, -1]))
+            inputs = Variable(torch.from_numpy(train_data.dataset.iloc[:, :-1].values))
+            labels = Variable(torch.from_numpy(train_data.dataset.iloc[:, -1].values))
 
         # Clear gradient buffers because we don't want any gradient from previous epoch to carry forward, dont want to cummulate gradients
         optimizer.zero_grad()

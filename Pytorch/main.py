@@ -1,12 +1,11 @@
-import torch
 import Pytorch.preprocess as pre
-import Pytorch.train as tra
 import Pytorch.test as tes
-import Pytorch.output as out
+import Pytorch.train as tra
 
 
 def main(path_to_data):
     data = pre.load_data(path_to_data)
+    data = pre.retype_data(data)
     train_data, test_data = pre.split_train_test(data)
     model = tra.train_linear(train_data)
     input = tes.test_linear(model, test_data)

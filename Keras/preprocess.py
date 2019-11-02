@@ -1,7 +1,6 @@
-import math
-
 import pandas as pd
-from torch.utils.data import random_split
+from sklearn.model_selection import train_test_split
+
 
 
 def load_data(path):
@@ -18,7 +17,8 @@ def retype_data(data):
 
 
 def split_train_test(data):
-    return random_split(data, [math.floor(data.shape[0]*0.7), math.ceil(data.shape[0]*0.3)])
+    return train_test_split(data.iloc[:, :-1], data.iloc[:, -1],
+                            test_size=0.7, random_state=42)
 
 
 if __name__ == '__main__':
